@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Samet Aydın Portfolio</title>
+    <meta name="description" content="Samet Aydın's portfolio showcasing expertise in Python development, machine learning, and data analysis. View projects and skills.">
+    <meta name="keywords" content="Python Developer, Machine Learning, Data Analysis, Portfolio">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sametaydin.me/">
+    <meta property="og:title" content="Samet Aydın - Python Developer Portfolio">
+    <meta property="og:description" content="Explore Samet Aydın's portfolio showcasing Python development, machine learning, and data analysis projects.">
+    <meta property="og:image" content="https://sametaydin.me/images/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://sametaydin.me/">
+    <meta property="twitter:title" content="Samet Aydın - Python Developer Portfolio">
+    <meta property="twitter:description" content="Explore Samet Aydın's portfolio showcasing Python development, machine learning, and data analysis projects.">
+    <meta property="twitter:image" content="https://sametaydin.me/images/twitter-image.jpg">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://sametaydin.me/">
+
+    <!-- Favicon -->
+    <script src="https://kit.fontawesome.com/your-font-awesome-kit-code.js" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const favicon = document.createElement('link');
+            favicon.rel = 'icon';
+            favicon.href = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">&#xf121;</text></svg>';
+            document.head.appendChild(favicon);
+        });
+    </script>
+   
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Samet Aydın Portfolio</div>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#achievements">Achievements</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <img src="images/profilphoto.jpeg" alt="Samet Aydın" class="profile-photo">
+                <h1>Samet Aydın</h1>
+                <p class="lead">Python Developer</p>
+                <p id="subtitle"></p>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h2 class="fade-in">About</h2>
+                <p id="about-content" class="fade-in"></p>
+            </div>
+        </section>
+
+        <section id="skills" class="bg-light">
+            <div class="container">
+                <div class="content-wrapper">
+                    <h2 class="fade-in">Skills</h2>
+                    <div id="skills-content" class="fade-in"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education">
+            <div class="container">
+                <h2 class="fade-in">Education</h2>
+                <div id="education-content" class="fade-in"></div>
+            </div>
+        </section>
+
+        <section id="experience" class="bg-light">
+            <div class="container">
+                <h2 class="fade-in">Experience</h2>
+                <div id="experience-content" class="fade-in"></div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <h2 class="fade-in">Projects</h2>
+                <div id="projects-content" class="fade-in"></div>
+            </div>
+        </section>
+
+        <section id="achievements" class="bg-light">
+            <div class="container">
+                <h2 class="fade-in">Achievements and Certificates</h2>
+                <div id="achievements-content" class="fade-in"></div>
+            </div>
+        </section>
+
+        <section id="contact" class="bg-light">
+            <div class="container">
+                <div id="social-links"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>2024 Samet Aydın</p>
+        </div>
+    </footer>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
+
+    <script src="script.js"></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Person",
+      "name": "Samet Aydın",
+      "url": "https://sametaydin.me/",
+      "image": "https://sametaydin.me/images/profile-photo.jpg",
+      "sameAs": [
+        "https://www.linkedin.com/in/sametaydin/",
+        "https://github.com/sametaydin"
+      ],
+      "jobTitle": "Python Developer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "DRONOS"
+      }
+    }
+    </script>
+</body>
+</html>
