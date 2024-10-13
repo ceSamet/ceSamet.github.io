@@ -24,3 +24,4 @@ The website is fully responsive, ensuring a seamless experience across all devic
 - Responsive design with **Flexbox** and **CSS Grid**
 - Smooth animations using **IntersectionObserver API**
 - Hosted on **GitHub Pages**
+ 
