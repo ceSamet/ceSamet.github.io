@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
             school: "Hong Kong University of Science and Technology",
             logo: "images/hkustLogo.png",
             degree: "Big Data MicroMaster Program (edX)",
-            duration: "Ongoing",
+            duration: "August 2024 - Present",
             description: "Studying advanced techniques in big data analytics, focusing on handling and processing large datasets efficiently."
         }
     ];
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
             company: "DRONOS",
             logo: "images/dronos.png",
             title: "Software Engineer",
-            duration: "Current",
+            duration: "May 2024 - Present",
             description: "Working on various computer vision and signal processing projects including:",
             bullets: [
                 "Point cloud WiFi RSSI signal processing for indoor positioning",
@@ -240,9 +240,9 @@ projects.forEach(project => {
 
     let lastScrollTop = 0;
     const header = document.querySelector('header');
-    const scrollThreshold = 100; // Adjust this value to change when the header starts hiding
+    const scrollThreshold = 100; 
 
-    const mobileBreakpoint = 768; // This should match your CSS mobile breakpoint
+    const mobileBreakpoint = 768; 
 
     window.addEventListener('scroll', () => {
         if (window.innerWidth <= mobileBreakpoint) {
@@ -272,7 +272,6 @@ projects.forEach(project => {
         }
     });
 
-    // Also add a resize listener to handle device rotation or window resizing
     window.addEventListener('resize', () => {
         if (window.innerWidth > mobileBreakpoint) {
             header.classList.remove('hidden');
