@@ -6,6 +6,7 @@
     
     <title>Samet Aydın Portfolio</title>
     <meta name="description" content="Samet Aydın's portfolio showcasing expertise in Python development, machine learning, and data analysis. View projects and skills.">
+    <meta name="keywords" content="Python Developer, Machine Learning, Data Analysis, Portfolio">
     
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -54,6 +55,7 @@
                     <li><a href="#skills">Skills</a></li>
                     <li><a href="#education">Education</a></li>
                     <li><a href="#experience">Experience</a></li>
+                    <li><a href="#projects">Projects</a></li>
                     <li><a href="#achievements">Achievements</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -101,7 +103,14 @@
             </div>
         </section>
 
-        <section id="achievements">
+        <section id="projects">
+            <div class="container">
+                <h2 class="fade-in">Projects</h2>
+                <div id="projects-content" class="fade-in"></div>
+            </div>
+        </section>
+
+        <section id="achievements" class="bg-light">
             <div class="container">
                 <h2 class="fade-in">Achievements and Certificates</h2>
                 <div id="achievements-content" class="fade-in"></div>
@@ -132,14 +141,16 @@
       "@type": "Person",
       "name": "Samet Aydın",
       "url": "https://sametaydin.me/",
-      "image": "https://sametaydin.me/images/profilphoto.jpeg",
+      "image": "https://sametaydin.me/images/profile-photo.jpg",
       "sameAs": [
         "https://www.linkedin.com/in/sametaydin/",
         "https://github.com/sametaydin"
       ],
       "jobTitle": "Python Developer",
-      "description": "Python developer with experience in data analysis, computer vision, and AI applications.",
-      "knowsAbout": ["Python", "Machine Learning", "Computer Vision", "Data Analysis", "PyTorch", "scikit-learn", "Open3D"]
+      "worksFor": {
+        "@type": "Organization",
+        "name": "DRONOS"
+      }
     }
     </script>
 </body>

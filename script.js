@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const experiences = [
         {
             company: "DRONOS",
-            logo: "images/dronos.jpeg",
+            logo: "images/dronos.png",
             title: "Software Engineer",
             duration: "Current",
             description: "Working on various computer vision and signal processing projects including:",
@@ -91,6 +91,42 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     });
 
+   
+const projects = [
+    {
+        title: "Wi-Fi Signal Localization System",
+        description: "Developed a Python-based system to optimize Wi-Fi signal strength in indoor environments. Utilized Open3D for point cloud analysis and modeled wall signal losses to determine the best modem placement.",
+        technologies: ["Python", "Open3D", "NumPy", "scikit-learn"]
+    },
+    {
+        title: "WebSocket Binance Trading Bot",
+        description: "Created a real-time trading bot using Binance API and WebSocket connections. Implemented strategies for detecting market trends and executing trades with quant-based analysis.",
+        technologies: ["Python", "Binance API", "WebSocket", "Pandas"]
+    },
+    {
+        title: "AI-Based Object Detection System",
+        description: "Built a computer vision model using YOLOv5 and PyTorch to detect and classify objects in real time.",
+        technologies: ["Python", "YOLOv5", "PyTorch", "OpenCV"]
+    }
+];
+
+const projectsContent = document.getElementById('projects-content');
+projects.forEach(project => {
+    projectsContent.innerHTML += `
+        <div class="project-card fade-in">
+            <h3 class="project-title">${project.title}</h3>
+            <p class="project-description">${project.description}</p>
+            <div class="project-tech">
+                ${project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+            </div>
+            <div class="project-links">
+                ${project.github ? `<a href="${project.github}" target="_blank" class="project-link">GitHub</a>` : ''}
+                ${project.demo ? `<a href="${project.demo}" target="_blank" class="project-link">Live Demo</a>` : ''}
+            </div>
+        </div>
+    `;
+});
+    
     const achievements = [
         {
             title: "HarvardX Data Analysis Certificate",
@@ -194,5 +230,52 @@ document.addEventListener('DOMContentLoaded', () => {
     faders.forEach(fader => {
         appearOnScroll.observe(fader);
     });
-});
 
+    window.onscroll = function() {
+        let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        let scrolled = (winScroll / height) * 100;
+        document.getElementById("myBar").style.width = scrolled + "%";
+    };
+
+    let lastScrollTop = 0;
+    const header = document.querySelector('header');
+    const scrollThreshold = 100; // Adjust this value to change when the header starts hiding
+
+    const mobileBreakpoint = 768; // This should match your CSS mobile breakpoint
+
+    window.addEventListener('scroll', () => {
+        if (window.innerWidth <= mobileBreakpoint) {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Determine scroll direction
+            if (scrollTop > lastScrollTop && scrollTop > scrollThreshold) {
+                // Scrolling down
+                header.classList.add('hidden');
+            } else {
+                // Scrolling up
+                header.classList.remove('hidden');
+            }
+
+            // Add or remove 'scrolled' class based on scroll position
+            if (scrollTop > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+
+            lastScrollTop = scrollTop;
+        } else {
+            // Always show header on larger screens
+            header.classList.remove('hidden');
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        }
+    });
+
+    // Also add a resize listener to handle device rotation or window resizing
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > mobileBreakpoint) {
+            header.classList.remove('hidden');
+        }
+    });
+});
