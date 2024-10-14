@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('subtitle').textContent = "Expert Python Developer | Machine Learning | Computer Vision | Data Analysis";
 
-    document.getElementById('about-content').textContent = "Experienced Python developer specializing in machine learning, computer vision, and data analysis. Proficient in NumPy, Pandas, SciPy, Matplotlib, and Seaborn for comprehensive data handling and visualization. Skilled in SQL, web scraping, Jetson, CUDA, and PyTorch, with expertise in deploying YOLO models for object detection. Adept at monocular camera techniques and 3D object localization.";
+    document.getElementById('about-content').textContent = "Experienced Python developer specializing in machine learning, computer vision, and data analysis. Proficient in NumPy, Pandas, SciPy, Matplotlib, and Seaborn for comprehensive data handling and visualization. Skilled in SQL, web scraping, Jetson, CUDA, and PyTorch, with expertise in deploying YOLO models for object detection. Currently working on monocular camera depth estimation techniques and 3D object localization.";
 
     const skills = [
         { name: "Python", icon: "fab fa-python" },
