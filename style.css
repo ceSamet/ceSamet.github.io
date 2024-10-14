@@ -430,6 +430,7 @@ footer p {
 #experience-content .item-logo {
     width: 150px;  
     height: 150px; 
+}
 
 .item-content h3 {
     color: var(--secondary-color);
