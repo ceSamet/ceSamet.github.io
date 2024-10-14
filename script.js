@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('subtitle').textContent = "Python Developer with experience in Machine Learning, Computer Vision, and Data Analysis.";
+    document.getElementById('subtitle').textContent = "Expert Python Developer | Machine Learning | Computer Vision | Data Analysis";
 
-    document.getElementById('about-content').textContent = "Python developer with experience in data analysis, computer vision, and AI applications. Skilled in using libraries such as NumPy, Pandas, and SciPy for comprehensive data handling and analysis. Proficient in creating visualizations with Matplotlib and Seaborn. Familiar with SQL and web scraping techniques for data collection. Experienced in Jetson, CUDA, and PyTorch, with a focus on deploying models like YOLO for object detection. Additionally skilled in monocular camera techniques and 3D object localization.";
+    document.getElementById('about-content').textContent = "Experienced Python developer specializing in machine learning, computer vision, and data analysis. Proficient in NumPy, Pandas, SciPy, Matplotlib, and Seaborn for comprehensive data handling and visualization. Skilled in SQL, web scraping, Jetson, CUDA, and PyTorch, with expertise in deploying YOLO models for object detection. Adept at monocular camera techniques and 3D object localization.";
 
     const skills = [
         { name: "Python", icon: "fab fa-python" },
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
     education.forEach(edu => {
         educationContent.innerHTML += `
             <div class="item-card">
-                <img src="${edu.logo}" alt="${edu.school} Logo" class="item-logo">
+                <img src="${edu.logo}" alt="${edu.school} Logo - ${edu.degree}" class="item-logo">
                 <div class="item-content">
                     <h3>${edu.school}</h3>
                     <p class="item-subtitle">${edu.degree}</p>
@@ -66,56 +66,82 @@ document.addEventListener('DOMContentLoaded', () => {
             logo: "images/dronos.png",
             title: "Software Engineer",
             duration: "May 2024 - Present",
-            description: "Working on various computer vision and signal processing projects including:",
+            description: "Working on various computer vision and signal processing projects.",
             bullets: [
-                "Point cloud WiFi RSSI signal processing for indoor positioning",
-                "Monocular camera depth estimation",
-                "3D object localization",
-                "Developing algorithms for signal strength analysis and mapping"
+                "- Point cloud WiFi RSSI signal processing for indoor positioning",
+                "- Monocular camera depth estimation",
+                "- 3D object localization",
+                "- Developing algorithms for signal strength analysis and mapping"
             ]
         }
     ];
     const experienceContent = document.getElementById('experience-content');
-    experiences.forEach(exp => {
+    experiences.forEach((exp, index) => {
         experienceContent.innerHTML += `
             <div class="item-card">
-                <img src="${exp.logo}" alt="${exp.company} Logo" class="item-logo">
+                <img src="${exp.logo}" alt="${exp.company} Logo - ${exp.title}" class="item-logo">
                 <div class="item-content">
                     <h3>${exp.company}</h3>
                     <p class="item-subtitle">${exp.title}</p>
                     <p class="item-duration">${exp.duration}</p>
                     <p>${exp.description}</p>
-                    ${exp.bullets ? exp.bullets.map(bullet => `<p class="experience-bullet">${bullet}</p>`).join('') : ''}
+                    <div class="experience-bullets" id="bullets-${index}" style="display: none;">
+                        ${exp.bullets ? exp.bullets.map(bullet => `<p class="experience-bullet">${bullet}</p>`).join('') : ''}
+                    </div>
+                    <button class="toggle-bullets" data-index="${index}">More</button>
                 </div>
             </div>
         `;
     });
 
+    // Add event listeners for the "More/Less" buttons
+    document.querySelectorAll('.toggle-bullets').forEach(button => {
+        button.addEventListener('click', function() {
+            const index = this.getAttribute('data-index');
+            const bulletsDiv = document.getElementById(`bullets-${index}`);
+            if (bulletsDiv.style.display === 'none') {
+                bulletsDiv.style.display = 'block';
+                this.textContent = 'Less';
+            } else {
+                bulletsDiv.style.display = 'none';
+                this.textContent = 'More';
+            }
+        });
+    });
+
    
-const projects = [
-    {
-        title: "Wi-Fi Signal Localization System",
-        description: "Developed a Python-based system to optimize Wi-Fi signal strength in indoor environments. Utilized Open3D for point cloud analysis and modeled wall signal losses to determine the best modem placement.",
-        technologies: ["Python", "Open3D", "NumPy", "scikit-learn"]
-    },
-    {
-        title: "WebSocket Binance Trading Bot",
-        description: "Created a real-time trading bot using Binance API and WebSocket connections. Implemented strategies for detecting market trends and executing trades with quant-based analysis.",
-        technologies: ["Python", "Binance API", "WebSocket", "Pandas"]
-    },
-    {
-        title: "AI-Based Object Detection System",
-        description: "Built a computer vision model using YOLOv5 and PyTorch to detect and classify objects in real time.",
-        technologies: ["Python", "YOLOv5", "PyTorch", "OpenCV"]
-    }
-];
+    const projects = [
+        {
+            title: "Wi-Fi Signal Localization System",
+            description: "Developed a Python-based system to optimize Wi-Fi signal strength in indoor environments.",
+            fullDescription: "Developed a Python-based system to optimize Wi-Fi signal strength in indoor environments. Utilized Open3D for point cloud analysis and created detailed models of indoor spaces to assess Wi-Fi signal losses due to walls. Modeled signal attenuation based on wall materials and thickness using custom algorithms. Implemented machine learning techniques with scikit-learn to predict optimal modem placement for maximum coverage and minimal interference.",
+            technologies: ["Python", "Open3D", "NumPy", "scikit-learn"]
+        },
+        {
+            title: "WebSocket Binance Trading Bot",
+            description: "Created a real-time trading bot using Binance API and WebSocket connections.",
+            fullDescription: "Created a real-time trading bot using Binance API and WebSocket connections. Designed the bot to continuously monitor market prices and volume, detecting rapid changes in trends. Integrated quant-based analysis techniques to optimize buy and sell signals, ensuring efficient trade execution. The bot was enhanced with risk management features such as stop-loss and trailing-stop orders, while utilizing Pandas for real-time data processing and analysis.",
+            technologies: ["Python", "Binance API", "WebSocket", "Pandas"]
+        },
+        {
+            title: "AI-Based Object Detection System",
+            description: "Built a computer vision model using YOLOv5 and PyTorch to detect and classify objects in real time.",
+            fullDescription: "Built a computer vision model using YOLOv5 and PyTorch to detect and classify objects in real time. The system was designed to perform highly accurate object detection across multiple categories, even in complex environments. Leveraged CUDA for GPU acceleration to enhance processing speed, allowing real-time frame analysis.",
+            technologies: ["Python", "YOLOv5", "PyTorch", "OpenCV"]
+        }
+    ];
+    
 
 const projectsContent = document.getElementById('projects-content');
-projects.forEach(project => {
+projects.forEach((project, index) => {
     projectsContent.innerHTML += `
         <div class="project-card fade-in">
             <h3 class="project-title">${project.title}</h3>
-            <p class="project-description">${project.description}</p>
+            <p class="project-description">
+                ${project.description}
+                <span class="toggle-project-description" data-index="${index}">More</span>
+            </p>
+            <p class="project-full-description" id="project-desc-${index}" style="display: none;">${project.fullDescription}</p>
             <div class="project-tech">
                 ${project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
             </div>
@@ -126,6 +152,25 @@ projects.forEach(project => {
         </div>
     `;
 });
+
+// Add event listeners for the "More/Less" buttons in projects
+document.querySelectorAll('.toggle-project-description').forEach(span => {
+    span.addEventListener('click', function() {
+        const index = this.getAttribute('data-index');
+        const fullDescDiv = document.getElementById(`project-desc-${index}`);
+        const shortDescDiv = this.parentNode;
+        if (fullDescDiv.style.display === 'none') {
+            fullDescDiv.style.display = 'block';
+            shortDescDiv.style.display = 'none';
+            this.textContent = 'Less';
+        } else {
+            fullDescDiv.style.display = 'none';
+            shortDescDiv.style.display = 'block';
+            this.textContent = 'More';
+        }
+    });
+});
+
     
     const achievements = [
         {
@@ -154,7 +199,7 @@ projects.forEach(project => {
     achievements.forEach(achievement => {
         achievementsContent.innerHTML += `
             <div class="item-card">
-                <img src="${achievement.image}" alt="${achievement.title}" class="item-logo">
+                <img src="${achievement.image}" alt="${achievement.title} - ${achievement.description}" class="item-logo">
                 <div class="item-content">
                     <h3>${achievement.title}</h3>
                     <p>${achievement.description}</p>
@@ -277,4 +322,40 @@ projects.forEach(project => {
             header.classList.remove('hidden');
         }
     });
+
+    // Scroll animation
+    const scrollElements = document.querySelectorAll('.fade-in');
+
+    const elementInView = (el, percentageScroll = 100) => {
+        const elementTop = el.getBoundingClientRect().top;
+        return (
+            elementTop <= 
+            ((window.innerHeight || document.documentElement.clientHeight) * (percentageScroll/100))
+        );
+    };
+
+    const displayScrollElement = (element) => {
+        element.classList.add('appear');
+    };
+
+    const hideScrollElement = (element) => {
+        element.classList.remove('appear');
+    };
+
+    const handleScrollAnimation = () => {
+        scrollElements.forEach((el) => {
+            if (elementInView(el, 100)) {
+                displayScrollElement(el);
+            } else {
+                hideScrollElement(el);
+            }
+        })
+    }
+
+    window.addEventListener('scroll', () => {
+        handleScrollAnimation();
+    });
+
+    // İlk yüklemede de çalıştır
+    handleScrollAnimation();
 });
