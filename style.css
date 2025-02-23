@@ -1,16 +1,53 @@
 :root {
-    --primary-color: #3498db;
-    --secondary-color: #2c3e50;
-    --accent-color: #e74c3c;
-    --background-color: #ecf0f1;
-    --text-color: #34495e;
+    /* Light theme variables */
+    --primary-color: #2563eb;
+    --secondary-color: #1e40af;
+    --accent-color: #3b82f6;
+    --background-color: #f8fafc;
+    --card-background: #ffffff;
+    --text-color: #1e293b;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
+    --hover-color: #dbeafe;
+    --shadow-color: rgba(0, 0, 0, 0.1);
     --light-bg: #f9f9f9;
+}
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary-color: #3b82f6;
+        --secondary-color: #60a5fa;
+        --accent-color: #2563eb;
+        --background-color: #0f172a;
+        --card-background: #1e293b;
+        --text-color: #f1f5f9;
+        --text-muted: #94a3b8;
+        --border-color: #334155;
+        --hover-color: #1e40af;
+        --shadow-color: rgba(0, 0, 0, 0.3);
+    }
+}
+
+/* Manual dark mode class for JavaScript toggle */
+.dark-mode {
+    --primary-color: #3b82f6;
+    --secondary-color: #60a5fa;
+    --accent-color: #2563eb;
+    --background-color: #0f172a;
+    --card-background: #1e293b;
+    --text-color: #f1f5f9;
+    --text-muted: #94a3b8;
+    --border-color: #334155;
+    --hover-color: #1e40af;
+    --shadow-color: rgba(0, 0, 0, 0.3);
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 body {
@@ -35,7 +72,10 @@ body {
 }
 
 header {
-    background-color: var(--primary-color);
+    background-color: var(--card-background);
+    border-bottom: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     padding: 1rem 0;
     position: fixed;
     width: 100%;
@@ -47,7 +87,8 @@ header {
 
 header.scrolled {
     padding: 0.5rem 0;
-    background-color: rgba(52, 152, 219, 0.9);
+    background-color: var(--card-background);
+    opacity: 0.98;
 }
 
 header.hidden {
@@ -61,7 +102,7 @@ nav {
 }
 
 .logo {
-    color: #ffffff;
+    color: var(--text-color);
     font-size: 1.5rem;
     font-weight: bold;
     transition: all 0.3s ease;
@@ -88,7 +129,7 @@ nav {
 }
 
 .nav-menu li a {
-    color: #ffffff;
+    color: var(--text-color);
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
@@ -102,7 +143,7 @@ nav {
     height: 2px;
     bottom: -5px;
     left: 0;
-    background-color: #fff;
+    background-color: var(--accent-color);
     transform: scaleX(0);
     transition: transform 0.3s ease;
 }
@@ -121,7 +162,7 @@ section {
 }
 
 .bg-light {
-    background-color: var(--light-bg);
+    background-color: var(--card-background);
 }
 
 h1, h2, h3 {
@@ -131,10 +172,37 @@ h1, h2, h3 {
 .hero {
     text-align: center;
     padding: 8rem 0 6rem;
-    background-color: var(--primary-color);
-    color: #ffffff;
     position: relative;
     overflow: hidden;
+    color: #ffffff;
+}
+
+/* Light mode hero background */
+.hero {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+}
+
+/* Dark mode hero background */
+.dark-mode .hero {
+    background: linear-gradient(135deg, #1e40af, #1e3a8a);
+}
+
+/* Hero overlay for better text visibility */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2));
+    z-index: 1;
+}
+
+/* Ensure hero content is above the overlay */
+.hero > * {
+    position: relative;
+    z-index: 2;
 }
 
 .hero::after {
@@ -146,6 +214,7 @@ h1, h2, h3 {
     height: 100px;
     background-color: var(--background-color);
     transform: skewY(-3deg);
+    z-index: 3;
 }
 
 .profile-photo {
@@ -153,27 +222,32 @@ h1, h2, h3 {
     height: 200px;
     border-radius: 50%;
     margin-bottom: 2rem;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    border: 5px solid #ffffff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: 5px solid rgba(255, 255, 255, 0.9);
     object-fit: cover;
+    position: relative;
+    z-index: 2;
 }
 
 .hero h1 {
     font-size: 3rem;
     margin-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .hero .lead {
     font-size: 1.5rem;
     margin-bottom: 1rem;
-    opacity: 0.9;
+    opacity: 0.95;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 #subtitle {
     max-width: 600px;
     margin: 0 auto;
     font-size: 1.1rem;
-    opacity: 0.8;
+    opacity: 0.9;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .grid {
@@ -183,16 +257,18 @@ h1, h2, h3 {
 }
 
 .skill-item, .education-item, .achievement-item, .experience-item {
-    background-color: #ffffff;
-    border-radius: 5px;
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
     padding: 1.5rem;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px var(--shadow-color);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .skill-item:hover, .education-item:hover, .achievement-item:hover, .experience-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 15px var(--shadow-color);
+    border-color: var(--accent-color);
 }
 
 #social-links {
@@ -203,9 +279,9 @@ h1, h2, h3 {
 }
 
 #social-links a {
-    color: var(--primary-color);
+    color: var(--text-color);
     font-size: 1.5rem;
-    transition: color 0.3s ease, transform 0.3s ease;
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -214,13 +290,14 @@ h1, h2, h3 {
 }
 
 #social-links a:hover {
-    color: var(--accent-color);
+    color: var(--primary-color);
     transform: translateY(-3px);
 }
 
 footer {
-    background-color: var(--background-color); /* Ana arka plan rengiyle aynı */
-    color: var(--text-color); /* Ana metin rengiyle aynı */
+    background-color: var(--card-background);
+    border-top: 1px solid var(--border-color);
+    color: var(--text-color);
     text-align: center;
     padding: 0.5rem 0; /* Minimal padding */
     margin-top: 1rem; /* Üstten biraz boşluk */
@@ -278,12 +355,14 @@ footer p {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f8f9fa;
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
     border-radius: 50%;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px var(--shadow-color);
     transition: all 0.3s ease;
     position: relative;
     z-index: 1;
+    color: var(--text-color);
 }
 
 .skill-item i {
@@ -293,7 +372,8 @@ footer p {
 
 .skill-item:hover {
     transform: translateY(-3px);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px var(--shadow-color);
+    border-color: var(--accent-color);
 }
 
 .skill-item::after {
@@ -302,9 +382,9 @@ footer p {
     top: -30px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: var(--primary-color);
-    color: white;
-    padding: 2px 8px;
+    background-color: var(--card-background);
+    color: var(--text-color);
+    padding: 4px 8px;
     border-radius: 4px;
     font-size: 0.8rem;
     white-space: nowrap;
@@ -312,6 +392,8 @@ footer p {
     visibility: hidden;
     transition: all 0.3s ease;
     z-index: 2;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px var(--shadow-color);
 }
 
 .skill-item:hover::after {
@@ -337,12 +419,12 @@ footer p {
     z-index: 1001;
     width: 100%;
     height: 4px;
-    background: rgba(255,255,255,0.1);
+    background: var(--border-color);
 }
 
 .progress-bar {
     height: 4px;
-    background: var(--accent-color);
+    background: var(--primary-color);
     width: 0%;
 }
 
@@ -355,7 +437,7 @@ footer p {
         position: fixed;
         top: 60px;
         left: -100%;
-        background-color: rgba(52, 152, 219, 0.95); 
+        background-color: var(--card-background);
         width: 100%;
         height: calc(100vh - 60px); 
         flex-direction: column;
@@ -364,6 +446,7 @@ footer p {
         overflow-y: auto; 
         backdrop-filter: blur(5px); 
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+        border: 1px solid var(--border-color);
     }
 
     .nav-menu.active {
@@ -382,7 +465,7 @@ footer p {
     }
 
     .nav-menu li a:hover {
-        background-color: rgba(255, 255, 255, 0.1); 
+        background-color: var(--hover-color);
     }
 
     .grid {
@@ -420,19 +503,21 @@ footer p {
 }
 
 .item-card {
-    background-color: #ffffff;
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px var(--shadow-color);
     padding: 2rem;
     display: flex;
     align-items: flex-start;
     margin-bottom: 2rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .item-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 6px 12px var(--shadow-color);
+    border-color: var(--accent-color);
 }
 
 .item-logo {
@@ -449,22 +534,19 @@ footer p {
 }
 
 .item-content h3 {
-    color: var(--secondary-color);
+    color: var(--text-color);
     margin-bottom: 0.5rem;
     font-size: 1.5rem;
 }
 
 .item-subtitle {
-    font-weight: bold;
     color: var(--primary-color);
     margin-bottom: 0.25rem;
 }
 
 .item-duration {
-    font-style: italic;
-    color: var(--secondary-color);
+    color: var(--text-muted);
     margin-bottom: 1rem;
-    opacity: 0.8;
 }
 
 .item-link {
@@ -506,12 +588,13 @@ footer p {
     display: inline-block;
     margin-right: 1rem;
     margin-bottom: 0.5rem;
+    color: var(--primary-color);
 }
 
 section h2 {
     text-align: center;
     margin-bottom: 3rem;
-    color: var(--primary-color);
+    color: var(--text-color);
     font-size: 2.5rem;
     font-weight: bold;
     position: relative;
@@ -526,7 +609,7 @@ section h2::after {
     transform: translateX(-50%);
     width: 50px;
     height: 3px;
-    background-color: var(--accent-color);
+    background-color: var(--primary-color);
 }
 
 #about h2,
@@ -536,7 +619,7 @@ section h2::after {
 #achievements h2 {
     text-align: center;
     margin-bottom: 2rem;
-    color: var(--primary-color);
+    color: var(--text-color);
 }
 
 @media (max-width: 768px) {
@@ -547,29 +630,33 @@ section h2::after {
 
 .experience-bullet {
     margin-top: 0.25rem;
+    color: var(--text-color);
 }
 
 .project-card {
-    background-color: #ffffff;
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px var(--shadow-color);
     padding: 2rem;
     margin-bottom: 2rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .project-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 6px 12px var(--shadow-color);
+    border-color: var(--accent-color);
 }
 
 .project-title {
-    color: var(--secondary-color);
+    color: var(--text-color);
     margin-bottom: 0.5rem;
     font-size: 1.5rem;
 }
 
-.project-description {
+.project-description, .project-full-description {
+    color: var(--text-color);
     margin-bottom: 1rem;
     display: inline; /* Yazı ve More butonu aynı satırda olsun */
 }
@@ -607,12 +694,12 @@ section h2::after {
 
 .toggle-bullets {
     background-color: var(--primary-color);
-    color: white;
+    color: #ffffff;
     border: none;
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
     margin-top: 10px;
 }
 
@@ -638,4 +725,102 @@ section h2::after {
 
 .project-full-description {
     margin-top: 10px;
+}
+
+.theme-toggle {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    margin-left: 1rem;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    background-color: var(--hover-color);
+    transform: scale(1.1);
+}
+
+.theme-toggle:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--accent-color);
+}
+
+/* Update general text colors */
+p, span, div {
+    color: var(--text-color);
+}
+
+/* Update background colors */
+body, main, section {
+    background-color: var(--background-color);
+}
+
+/* Update link colors */
+a {
+    color: var(--primary-color);
+}
+
+a:hover {
+    color: var(--accent-color);
+}
+
+/* Update mobile menu */
+@media (max-width: 768px) {
+    .menu-toggle {
+        color: var(--text-color);
+        background-color: var(--card-background);
+    }
+}
+
+/* Update hero section text */
+.hero h1, .hero p, .hero .lead, #subtitle {
+    color: #ffffff;
+}
+
+/* Update section backgrounds */
+section:nth-child(even) {
+    background-color: var(--background-color);
+}
+
+section:nth-child(odd) {
+    background-color: var(--card-background);
+}
+
+/* Update progress bar */
+.progress-container {
+    background-color: var(--card-background);
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Update all text content to ensure visibility */
+.item-content p, 
+.project-description, 
+.project-full-description,
+.experience-bullet,
+.education-bullet {
+    color: var(--text-color);
+}
+
+/* Update theme toggle button */
+.theme-toggle {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+}
+
+.theme-toggle:hover {
+    background-color: var(--hover-color);
+}
+
+/* Ensure all headings are visible */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-color);
 }

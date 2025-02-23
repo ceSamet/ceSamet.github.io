@@ -34,14 +34,14 @@ document.addEventListener('DOMContentLoaded', () => {
             logo: "images/kadirHasLogo.png",
             degree: "Bachelor of Science in Computer Engineering",
             duration: "September 2022 - Present",
-            description: "Focusing on advanced topics such as machine learning, computer vision, and data analysis. Gained comprehensive experience working with Python libraries and developing practical projects."
+            description: "Studying core computer engineering subjects including Logic Circuits, C/C++ Programming, Data Structures and Algorithms, and Fundamentals of Electrical Engineering. Also focusing on advanced topics such as machine learning, computer vision, and data analysis. Gained comprehensive experience working with Python libraries and developing practical projects."
         },
         {
-            school: "Hong Kong University of Science and Technology",
-            logo: "images/hkustLogo.png",
-            degree: "Big Data MicroMaster Program (edX)",
-            duration: "August 2024 - Present",
-            description: "Studying advanced techniques in big data analytics, focusing on handling and processing large datasets efficiently."
+            school: "Kadir Has University",
+            logo: "images/kadirHasLogo.png",
+            degree: "Management Information Systems",
+            duration: "February 2025 - Present",
+            description: "Specializing in web analytics, social media analytics, disaster management and business continuity, Python programming, data science, and linear algebra. Developing comprehensive skills in business analytics and information systems management."
         }
     ];
     const educationContent = document.getElementById('education-content');
@@ -61,6 +61,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const experiences = [
+        {
+            company: "Kadir Has University",
+            logo: "images/kadirHasLogo.png",
+            title: "Research Intern",
+            duration: "February 2025 - Present",
+            description: "Working on the development of interpretable feature selection and extraction algorithms for asynchronous Brain-Computer Interface (BCI) systems.",
+            bullets: [
+                "- Literature review and analysis of state-of-the-art BCI feature extraction methods",
+                "- Research on advanced feature selection algorithms and their applications in neural signal processing",
+                "- Investigation of interpretable machine learning approaches for BCI systems",
+                "- Comparative analysis of existing methodologies in the field of neural signal processing"
+            ]
+        },
         {
             company: "DRONOS",
             logo: "images/dronos.png",
@@ -358,4 +371,50 @@ document.querySelectorAll('.toggle-project-description').forEach(span => {
 
     // İlk yüklemede de çalıştır
     handleScrollAnimation();
+});
+
+// Dark mode toggle functionality
+function initDarkMode() {
+    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    const storedTheme = localStorage.getItem('theme');
+    
+    // Set initial theme based on stored preference or system preference
+    if (storedTheme === 'dark' || (!storedTheme && prefersDarkScheme.matches)) {
+        document.body.classList.add('dark-mode');
+    }
+
+    // Add theme toggle button to header
+    const nav = document.querySelector('nav');
+    const themeToggle = document.createElement('button');
+    themeToggle.innerHTML = `<i class="fas fa-moon"></i>`;
+    themeToggle.classList.add('theme-toggle');
+    themeToggle.setAttribute('aria-label', 'Toggle dark mode');
+    nav.appendChild(themeToggle);
+
+    // Toggle theme function
+    function toggleTheme() {
+        const isDark = document.body.classList.toggle('dark-mode');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        themeToggle.innerHTML = isDark ? `<i class="fas fa-sun"></i>` : `<i class="fas fa-moon"></i>`;
+    }
+
+    // Event listeners
+    themeToggle.addEventListener('click', toggleTheme);
+    prefersDarkScheme.addEventListener('change', (e) => {
+        if (!localStorage.getItem('theme')) {
+            if (e.matches) {
+                document.body.classList.add('dark-mode');
+                themeToggle.innerHTML = `<i class="fas fa-sun"></i>`;
+            } else {
+                document.body.classList.remove('dark-mode');
+                themeToggle.innerHTML = `<i class="fas fa-moon"></i>`;
+            }
+        }
+    });
+}
+
+// Add dark mode initialization to window load
+window.addEventListener('load', () => {
+    initDarkMode();
+    // ... existing window.load code ...
 });
