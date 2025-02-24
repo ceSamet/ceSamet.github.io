@@ -192,7 +192,8 @@ document.querySelectorAll('.toggle-project-description').forEach(span => {
             image: "images/harvardXLogo.png",
             links: [
                 { name: "Python", url: "https://courses.edx.org/certificates/dd6d819a7049448ab2d42112123e9384" },
-                { name: "Data Science", url: "https://courses.edx.org/certificates/f81b9b4aef764fc2940c51bf546fe63d" }
+                { name: "Data Science", url: "https://courses.edx.org/certificates/f81b9b4aef764fc2940c51bf546fe63d" },
+                { name: "Artificial Intelligence, url: "https://cs50.harvard.edu/certificates/bdfce417-4b8a-4fc0-bf77-fffe7db46cf4" }
             ]
         },
         {
